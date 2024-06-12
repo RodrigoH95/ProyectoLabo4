@@ -7,7 +7,7 @@ using ProyectoLabo4.Services;
 namespace ProyectoLabo4.Controllers
 {
     [Route("api/users")]
-    //[Authorize]
+    [Authorize]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -43,7 +43,7 @@ namespace ProyectoLabo4.Controllers
         }
 
         [HttpPost]
-        //[Authorize(Roles = $"{Roles.ADMIN}, {Roles.MOD}")]
+        [Authorize(Roles = $"{Roles.ADMIN}, {Roles.MOD}")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -59,7 +59,7 @@ namespace ProyectoLabo4.Controllers
         }
 
         [HttpPut("{id:int}")]
-        //[Authorize(Roles = $"{Roles.ADMIN}, {Roles.MOD}")]
+        [Authorize(Roles = $"{Roles.ADMIN}, {Roles.MOD}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -78,7 +78,7 @@ namespace ProyectoLabo4.Controllers
         }
 
         [HttpDelete("{id:int}")]
-        //[Authorize(Roles = Roles.ADMIN)]
+        [Authorize(Roles = Roles.ADMIN)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]

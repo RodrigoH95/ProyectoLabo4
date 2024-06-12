@@ -15,6 +15,12 @@ namespace ProyectoLabo4.Config
             CreateMap<User, UsersDto>().ReverseMap();
             CreateMap<CreateUserDto, User>().ReverseMap();
             CreateMap<UpdateUserDto, User>().ForAllMembers(opts => opts.Condition((_, _, srcMember) => srcMember != null));
+
+            // Role
+            CreateMap<User, UserLoginResponseDto>().ForMember(
+                dest => dest.Roles,
+                opt => opt.MapFrom(src => src.Roles.Select(r => r.Name).ToList())
+            );
         }
     }
 }

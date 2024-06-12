@@ -11,7 +11,8 @@ namespace ProyectoLabo4.Services
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasIndex(u => u.UserName).IsUnique();
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.UserName).IsUnique();
 
             modelBuilder.Entity<Role>().HasData(
                 new Role { Id = 1, Name = Roles.ADMIN },

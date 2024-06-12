@@ -36,7 +36,7 @@ namespace ProyectoLabo4.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Role");
+                    b.ToTable("Role", (string)null);
 
                     b.HasData(
                         new
@@ -68,7 +68,7 @@ namespace ProyectoLabo4.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("RoleUsers");
+                    b.ToTable("RoleUsers", (string)null);
                 });
 
             modelBuilder.Entity("ProyectoLabo4.Models.User.User", b =>
@@ -100,7 +100,7 @@ namespace ProyectoLabo4.Migrations
                     b.HasIndex("UserName")
                         .IsUnique();
 
-                    b.ToTable("User");
+                    b.ToTable("User", (string)null);
                 });
 
             modelBuilder.Entity("ProyectoLabo4.Models.Role.RoleUsers", b =>
