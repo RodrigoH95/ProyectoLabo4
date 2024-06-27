@@ -1,5 +1,5 @@
 ﻿using Microsoft.IdentityModel.Tokens;
-using ProyectoLabo4.Models.User;
+using ProyectoLabo4.Models.Users;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;

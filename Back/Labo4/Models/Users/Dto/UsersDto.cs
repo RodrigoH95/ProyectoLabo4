@@ -1,4 +1,4 @@
-﻿namespace ProyectoLabo4.Models.User.Dto
+﻿namespace ProyectoLabo4.Models.Users.Dto
 {
     public class UsersDto
     {

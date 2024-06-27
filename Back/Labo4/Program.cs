@@ -39,10 +39,14 @@ builder.Services.AddScoped<UserServices>();
 builder.Services.AddScoped<IEncoderService, EncoderService>();
 builder.Services.AddScoped<AuthServices>();
 builder.Services.AddScoped<RoleServices>();
+builder.Services.AddScoped<ProductoService>();
+//builder.Services.AddScoped<ComentarioService>();
 
 // Repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+builder.Services.AddScoped<IProductoRepository, ProductoRepository>();
+//builder.Services.AddScoped<IComentarioRepository, ComentarioRepository>();
 
 // AutoMapper
 builder.Services.AddAutoMapper(typeof(Mapping));

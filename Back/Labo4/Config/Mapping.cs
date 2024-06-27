@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
-using ProyectoLabo4.Models.User;
-using ProyectoLabo4.Models.User.Dto;
+using ProyectoLabo4.Models.Productos;
+using ProyectoLabo4.Models.Productos.Dto;
+using ProyectoLabo4.Models.Users;
+using ProyectoLabo4.Models.Users.Dto;
 
 namespace ProyectoLabo4.Config
 {
@@ -21,6 +23,12 @@ namespace ProyectoLabo4.Config
                 dest => dest.Roles,
                 opt => opt.MapFrom(src => src.Roles.Select(r => r.Name).ToList())
             );
+
+            // Producto
+            CreateMap<Producto, ProductoDto>().ReverseMap();
+            CreateMap<Producto, ProductosDto>().ReverseMap();
+            CreateMap<CreateProductoDto, Producto>().ReverseMap();
+            CreateMap<UpdateProductoDto, Producto>().ForAllMembers(opts => opts.Condition((_, _, srcMember) => srcMember != null));
         }
     }
 }

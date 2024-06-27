@@ -6,8 +6,8 @@ using ProyectoLabo4.Models.Auth;
 using ProyectoLabo4.Models.Auth.Dto;
 using ProyectoLabo4.Models.Role;
 using ProyectoLabo4.Models.Role.Dto;
-using ProyectoLabo4.Models.User;
-using ProyectoLabo4.Models.User.Dto;
+using ProyectoLabo4.Models.Users;
+using ProyectoLabo4.Models.Users.Dto;
 using ProyectoLabo4.Services;
 
 namespace ProyectoLabo4.Controllers

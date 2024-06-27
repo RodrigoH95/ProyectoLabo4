@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-using ProyectoLabo4.Models.User;
+using ProyectoLabo4.Models.Users;
 using ProyectoLabo4.Services;
+using ProyectoLabo4.Models.Productos;
 
 namespace ProyectoLabo4.Repositories
 {
@@ -16,8 +17,9 @@ namespace ProyectoLabo4.Repositories
             IQueryable<User> query = dbSet;
             if (filter != null)
             {
-                query = query.Where(filter).Include(u => u.Roles);
+                query = query.Where(filter);
             }
+            query = query.Include(u => u.Roles).Include(u => u.ProductoUsuarios);
             return await query.FirstOrDefaultAsync(filter);
         }
     }
