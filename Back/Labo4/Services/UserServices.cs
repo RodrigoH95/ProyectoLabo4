@@ -2,9 +2,11 @@
 using System.Net;
 using System.Web.Http;
 using ProyectoLabo4.Models.Role;
-using ProyectoLabo4.Models.User;
-using ProyectoLabo4.Models.User.Dto;
+using ProyectoLabo4.Models.Users;
+using ProyectoLabo4.Models.Users.Dto;
 using ProyectoLabo4.Repositories;
+using ProyectoLabo4.Models.Productos;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace ProyectoLabo4.Services
 {
@@ -12,13 +14,15 @@ namespace ProyectoLabo4.Services
     {
         private readonly IMapper _mapper;
         private readonly IUserRepository _userRepo;
+        private readonly IProductoRepository _productoRepository;
         private readonly IEncoderService _encoderService;
 
-        public UserServices(IMapper mapper, IUserRepository userRepo, IEncoderService encoderService)
+        public UserServices(IMapper mapper, IUserRepository userRepo, IEncoderService encoderService, IProductoRepository productoRepository)
         {
             _mapper = mapper;
             _userRepo = userRepo;
             _encoderService = encoderService;
+            _productoRepository = productoRepository;
         }
 
         public async Task<List<UsersDto>> GetAll()
@@ -103,6 +107,47 @@ namespace ProyectoLabo4.Services
             var user = await GetOneByIdOrException(id);
 
             return user.Roles.ToList();
+        }
+
+        // Productos
+        public async Task<UserDto> UpdateProductosById(int usuarioId, int productoId, int cantidad)
+        {
+            var usuario = await GetOneByIdOrException(usuarioId);
+
+            var producto = await _productoRepository.GetOne(p => p.Id == productoId);
+
+            if (producto == null)
+                throw new Exception($"No se encontró el producto con id: {productoId}");
+
+            if (producto.Stock <= cantidad)
+                throw new Exception("El producto no cuenta con stock suficiente");
+
+            var productoUsuario = usuario.ProductoUsuarios.FirstOrDefault(pu => pu.ProductoId == productoId);
+
+            if (productoUsuario == null)
+            {
+                productoUsuario = new ProductoUsuario
+                {
+                    UserId = usuario.Id,
+                    ProductoId = productoId,
+                    Cantidad = cantidad
+                };
+                usuario.ProductoUsuarios.Add(productoUsuario);
+            }
+            else
+            {
+                productoUsuario.Cantidad += cantidad;
+            }
+
+            return _mapper.Map<UserDto>(await _userRepo.Update(usuario));
+        }
+
+        public async Task<UserDto> RemoveProductoById(int usuarioId, int productoId)
+        {
+            var usuario = await GetOneByIdOrException(usuarioId);
+            usuario.ProductoUsuarios = usuario.ProductoUsuarios.Where(pu => pu.ProductoId != productoId).ToList();
+            await _userRepo.Update(usuario);
+            return _mapper.Map<UserDto>(usuario);
         }
     }
 }

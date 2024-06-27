@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "DbfpEt9lY9TNUB5w57wJx8l23gGJIJEPvB8OTYq8yE5vI8Mmy4ZjTH9hf+q3ei5qWuE+xD24sDK0f6VXOqe4NQ==",
+  "dgSpecHash": "xl1wVH+rYfE=",
   "success": true,
-  "projectFilePath": "C:\\Users\\RHere\\OneDrive\\Desktop\\Labo4\\Back\\Labo4\\ProyectoLabo4.csproj",
+  "projectFilePath": "C:\\Users\\RHere\\OneDrive\\Desktop\\Labo4\\ProyectoLabo4\\Back\\Labo4\\ProyectoLabo4.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\RHere\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\RHere\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
@@ -58,6 +58,7 @@
     "C:\\Users\\RHere\\.nuget\\packages\\system.formats.asn1\\5.0.0\\system.formats.asn1.5.0.0.nupkg.sha512",
     "C:\\Users\\RHere\\.nuget\\packages\\system.identitymodel.tokens.jwt\\7.5.2\\system.identitymodel.tokens.jwt.7.5.2.nupkg.sha512",
     "C:\\Users\\RHere\\.nuget\\packages\\system.io.filesystem.accesscontrol\\5.0.0\\system.io.filesystem.accesscontrol.5.0.0.nupkg.sha512",
+    "C:\\Users\\RHere\\.nuget\\packages\\system.linq.dynamic.core\\1.4.2\\system.linq.dynamic.core.1.4.2.nupkg.sha512",
     "C:\\Users\\RHere\\.nuget\\packages\\system.memory\\4.5.5\\system.memory.4.5.5.nupkg.sha512",
     "C:\\Users\\RHere\\.nuget\\packages\\system.memory.data\\1.0.2\\system.memory.data.1.0.2.nupkg.sha512",
     "C:\\Users\\RHere\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\RHere\\OneDrive\\Desktop\\Labo4\\Back\\Labo4\\ProyectoLabo4.csproj": {}
+    "C:\\Users\\RHere\\OneDrive\\Desktop\\Labo4\\ProyectoLabo4\\Back\\Labo4\\ProyectoLabo4.csproj": {}
   },
   "projects": {
-    "C:\\Users\\RHere\\OneDrive\\Desktop\\Labo4\\Back\\Labo4\\ProyectoLabo4.csproj": {
+    "C:\\Users\\RHere\\OneDrive\\Desktop\\Labo4\\ProyectoLabo4\\Back\\Labo4\\ProyectoLabo4.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\RHere\\OneDrive\\Desktop\\Labo4\\Back\\Labo4\\ProyectoLabo4.csproj",
+        "projectUniqueName": "C:\\Users\\RHere\\OneDrive\\Desktop\\Labo4\\ProyectoLabo4\\Back\\Labo4\\ProyectoLabo4.csproj",
         "projectName": "ProyectoLabo4",
-        "projectPath": "C:\\Users\\RHere\\OneDrive\\Desktop\\Labo4\\Back\\Labo4\\ProyectoLabo4.csproj",
+        "projectPath": "C:\\Users\\RHere\\OneDrive\\Desktop\\Labo4\\ProyectoLabo4\\Back\\Labo4\\ProyectoLabo4.csproj",
         "packagesPath": "C:\\Users\\RHere\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\RHere\\OneDrive\\Desktop\\Labo4\\Back\\Labo4\\obj\\",
+        "outputPath": "C:\\Users\\RHere\\OneDrive\\Desktop\\Labo4\\ProyectoLabo4\\Back\\Labo4\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\RHere\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -22,6 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -34,6 +35,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -73,6 +79,10 @@
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
               "version": "[7.5.2, )"
+            },
+            "System.Linq.Dynamic.Core": {
+              "target": "Package",
+              "version": "[1.4.2, )"
             }
           },
           "imports": [
@@ -94,7 +104,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }

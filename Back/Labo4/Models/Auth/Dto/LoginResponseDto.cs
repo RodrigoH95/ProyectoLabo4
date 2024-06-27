@@ -1,4 +1,4 @@
-﻿using ProyectoLabo4.Models.User.Dto;
+﻿using ProyectoLabo4.Models.Users.Dto;
 
 namespace ProyectoLabo4.Models.Auth.Dto
 {

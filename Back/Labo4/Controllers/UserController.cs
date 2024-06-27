@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProyectoLabo4.Enums;
-using ProyectoLabo4.Models.User.Dto;
+using ProyectoLabo4.Models.Users.Dto;
 using ProyectoLabo4.Services;
 
 namespace ProyectoLabo4.Controllers
@@ -38,7 +38,7 @@ namespace ProyectoLabo4.Controllers
             }
             catch
             {
-                return NotFound(new { messagge = $"No User with ID = {id}" });
+                return NotFound(new { message = $"No se halló ningún usuario con id: {id}" });
             }
         }
 
@@ -96,6 +96,36 @@ namespace ProyectoLabo4.Controllers
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
+            }
+        }
+
+
+        [HttpPost("{userId}/addProduct")]
+        public async Task<IActionResult> AddProductToUser(int userId, [FromQuery] int productId, [FromQuery] int cantidad)
+        {
+            try
+            {
+                await _userServices.UpdateProductosById(userId, productId, cantidad);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                // Handle exception (e.g., user or product not found)
+                return BadRequest(new { Message = ex.Message });
+            }
+        }
+
+        [HttpPost("{userId}/removeProduct")]
+        public async Task<IActionResult> RemoveProductFromUser(int userId, [FromQuery] int productId)
+        {
+            try
+            {
+                await _userServices.RemoveProductoById(userId, productId);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { Message = ex.Message });
             }
         }
     }

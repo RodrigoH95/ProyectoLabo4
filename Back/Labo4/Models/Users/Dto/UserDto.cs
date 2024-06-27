@@ -1,4 +1,7 @@
-﻿namespace ProyectoLabo4.Models.User.Dto
+﻿using ProyectoLabo4.Models.Productos;
+using ProyectoLabo4.Models.Productos.Dto;
+
+namespace ProyectoLabo4.Models.Users.Dto
 {
     public class UserDto
     {
@@ -6,5 +9,6 @@
         public string Name { get; set; } = null!;
         public string? Email { get; set; }
         public string UserName { get; set; } = null!;
+        public List<ProductoUsuario>? ProductoUsuarios { get; set; }
     }
 }
