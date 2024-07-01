@@ -6,8 +6,11 @@
         public string Nombre { get; set; } = null!;
         public string Descripcion { get; set; } = null!;
         public string UrlImg { get; set; } = null!;
+        public string Categoria { get; set; } = null!;
         public decimal Precio { get; set; }
         public decimal Descuento { get; set; }
+        public decimal Puntaje { get; set; }
+        public int Stock { get; set; }
         //public ICollection<Comentario.Comentario>? Comentarios { get; set; }
     }
 }

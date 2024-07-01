@@ -29,6 +29,7 @@ namespace ProyectoLabo4.Config
             CreateMap<Producto, ProductosDto>().ReverseMap();
             CreateMap<CreateProductoDto, Producto>().ReverseMap();
             CreateMap<UpdateProductoDto, Producto>().ForAllMembers(opts => opts.Condition((_, _, srcMember) => srcMember != null));
+            CreateMap<ProductoUsuario, ProductoUsuarioDto>().ReverseMap();
         }
     }
 }

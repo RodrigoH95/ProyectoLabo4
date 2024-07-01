@@ -20,7 +20,7 @@ namespace ProyectoLabo4.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<ProductosDto>>> Get([FromQuery] string sorting = "")
+        public async Task<ActionResult<List<ProductosDto>>> Get([FromQuery] string? sorting)
         {
             return Ok(await _productoService.GetAll(sorting));
         }
@@ -88,6 +88,20 @@ namespace ProyectoLabo4.Controllers
             {
                 await _productoService.DeleteOneById(id);
                 return Ok(new { message = $"El producto con id {id} ha sido eliminado" });
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpGet("usuario/{userId:int}/productos")]
+        public async Task<ActionResult<List<ProductoDto>>> GetAllByUserId(int userId)
+        {
+            try
+            {
+                var productos = await _productoService.GetAllByUserId(userId);
+                return Ok(productos);
             }
             catch (Exception e)
             {

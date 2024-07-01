@@ -98,7 +98,7 @@ namespace ProyectoLabo4.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Role");
+                    b.ToTable("Roles");
 
                     b.HasData(
                         new
@@ -162,7 +162,7 @@ namespace ProyectoLabo4.Migrations
                     b.HasIndex("UserName")
                         .IsUnique();
 
-                    b.ToTable("User");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("ProyectoLabo4.Models.Productos.ProductoUsuario", b =>

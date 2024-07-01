@@ -12,16 +12,19 @@ namespace ProyectoLabo4.Services
     {
         private readonly IMapper _mapper;
         private readonly IProductoRepository _repository;
+        private readonly IUserRepository _userRepository;
 
         public ProductoService(
             IMapper mapper, 
-            IProductoRepository productoRepository)
+            IProductoRepository productoRepository,
+            IUserRepository userRepository)
         {
             _mapper = mapper;
             _repository = productoRepository;
+            _userRepository = userRepository;
         }
 
-        public async Task<List<ProductosDto>> GetAll(string sorting)
+        public async Task<List<ProductosDto>> GetAll(string? sorting)
         {
             var productos = await _repository.GetAll(sorting);
             return _mapper.Map<List<ProductosDto>>(productos);
@@ -36,10 +39,10 @@ namespace ProyectoLabo4.Services
             return _mapper.Map<List<ProductosDto>>(productos);
         }
 
-        public async Task<Producto> GetOneById(int id)
+        public async Task<ProductoDto> GetOneById(int id)
         {
             var producto = await GetOneByIdOrException(id);
-            return producto;
+            return _mapper.Map<ProductoDto>(producto);
         }
 
         private async Task<Producto> GetOneByIdOrException(int id)
@@ -70,6 +73,21 @@ namespace ProyectoLabo4.Services
         {
             var producto = await GetOneByIdOrException(id);
             await _repository.Delete(producto);
+        }
+
+        public async Task<List<ProductoDto>> GetAllByUserId(int userId)
+        {
+            var user = await _userRepository.GetOne(u => u.Id == userId);
+            if (user == null)
+            {
+                return new List<ProductoDto>();
+            }
+
+            var productos = await _repository.GetAll(p => p.ProductoUsuarios.Any(p => p.UserId == userId));
+
+            var productosDto = _mapper.Map<List<ProductoDto>>(productos);
+
+            return productosDto;
         }
     }
 }

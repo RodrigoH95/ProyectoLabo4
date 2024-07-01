@@ -27,9 +27,9 @@ namespace ProyectoLabo4.Repositories
             return await query.FirstOrDefaultAsync(filter);
         }
 
-        public async Task<IEnumerable<Producto>> GetAll(string sorting)
+        public async Task<IEnumerable<Producto>> GetAll(string? sorting)
         {
-            IQueryable<Producto> query = dbSet;
+            IQueryable<Producto> query = dbSet.Include(p => p.ProductoUsuarios);
             if (sorting != null)
             {
                 Dictionary<string, string> sortingMap = new Dictionary<string, string>

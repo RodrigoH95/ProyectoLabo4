@@ -138,8 +138,9 @@ namespace ProyectoLabo4.Services
             {
                 productoUsuario.Cantidad += cantidad;
             }
+            var userDto = _mapper.Map<UserDto>(await _userRepo.Update(usuario));
 
-            return _mapper.Map<UserDto>(await _userRepo.Update(usuario));
+            return userDto;
         }
 
         public async Task<UserDto> RemoveProductoById(int usuarioId, int productoId)
