@@ -96,11 +96,31 @@ namespace ProyectoLabo4.Controllers
         }
 
         [HttpGet("usuario/{userId:int}/productos")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+
         public async Task<ActionResult<List<ProductoDto>>> GetAllByUserId(int userId)
         {
             try
             {
                 var productos = await _productoService.GetAllByUserId(userId);
+                return Ok(productos);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpGet("ofertas")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<List<ProductoDto>>> GetProductsOnDiscount()
+        {
+            try
+            {
+                var productos = await _productoService.GetProductsOnDiscount();
                 return Ok(productos);
             }
             catch (Exception e)

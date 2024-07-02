@@ -11,6 +11,8 @@ import { Route, Switch } from "wouter";
 import { ProductListAdmin } from "./components/products/product-list-admin";
 import { ProductContainer } from "./components/products/product-container";
 import { UpdateProduct } from "./components/products/update-product";
+import { ProductListUsers } from "./components/products/product-list-users";
+import { ProductDetails } from "./components/products/product-details";
 
 export const Router = () => {
   const { state, handleLogout } = useContext(AuthContext);
@@ -18,6 +20,10 @@ export const Router = () => {
   return (
     <Switch>
       <Route path="/">
+        <MessageCard message="Bienvenido a CompuTienda" />
+        <ProductListUsers />
+      </Route>
+      <Route path="/signin">
         {/* Aca van los productos */}
         {isAuthenticated ? (
           <MessageCard message={`Welcome ${user.name}`}>
@@ -29,6 +35,7 @@ export const Router = () => {
           <Login />
         )}
       </Route>
+      <Route path="/product/:id" component={ProductDetails} />
       {isAuthenticated && <Route path="/users" component={UserContainer} />}
       {isAuthenticated && (user.roles.includes(ROLES.ADMIN) || user.roles.includes(ROLES.MOD)) && (
         <Route path="/users/:id" component={UpdateUser} />

@@ -23,9 +23,7 @@ import { ROLES } from "@/constants";
 export const ProductListAdmin = () => {
     const [, setLocation] = useLocation();
 
-    const {
-        state: { user },
-    } = useContext(AuthContext);
+    const { state: { user } } = useContext(AuthContext);
     const { roles } = user;
 
     const {

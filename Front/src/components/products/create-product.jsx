@@ -2,11 +2,12 @@ import { createUserSchema } from "@/schemas/validation/user";
 import { createUser } from "@/services/users";
 import { mappedErrors } from "@/utils/mapped-errors";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Button, Card, Text, TextInput, Title } from "@tremor/react";
+import { Button, Card, TextInput, Text, Title } from "@tremor/react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { useLocation } from "wouter";
 import { createProduct } from "../../services/products";
+import { createUpdateProductSchema } from "../../schemas/validation/product";
 
 export const CreateProduct = () => {
     const [errors, setErrors] = useState({});
@@ -34,11 +35,12 @@ export const CreateProduct = () => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData);
-        // const { success, errors } = mappedErrors(createUserSchema, data);
-        // if (!success) {
-        //   setErrors(errors);
-        //   return;
-        // }
+        data.descuento = parseFloat(data.descuento / 100);
+        const { success, errors } = mappedErrors(createUpdateProductSchema, data);
+        if (!success) {
+          setErrors(errors);
+          return;
+        }
         e.target.reset();
         setErrors({});
         mutate(data);

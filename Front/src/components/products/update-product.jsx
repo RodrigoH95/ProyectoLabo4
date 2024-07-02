@@ -1,6 +1,4 @@
 import { Loader } from "@/components/loader";
-import { updateUserSchema } from "@/schemas/validation/user";
-import { getUser, updateUser } from "@/services/users";
 import { mappedErrors } from "@/utils/mapped-errors";
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -9,6 +7,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { useLocation, useParams } from "wouter";
 import { getOneProduct, updateProduct } from "../../services/products";
+import { createUpdateProductSchema } from "../../schemas/validation/product";
 
 export const UpdateProduct = () => {
     const { id } = useParams();
@@ -44,11 +43,12 @@ export const UpdateProduct = () => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData);
-        // const { success, errors } = mappedErrors(updateUserSchema, data);
-        // if (!success) {
-        //   setErrors(errors);
-        //   return;
-        // }
+        data.descuento = parseFloat(data.descuento / 100);
+        const { success, errors } = mappedErrors(createUpdateProductSchema, data);
+        if (!success) {
+          setErrors(errors);
+          return;
+        }
         e.target.reset();
         setErrors({});
         mutate(data);
@@ -126,7 +126,7 @@ export const UpdateProduct = () => {
                                     error={Boolean(errors.descuento)}
                                     errorMessage={errors.descuento}
                                     type="number"
-                                    defaultValue={data?.descuento}
+                                    defaultValue={data?.descuento * 100}
                                 />
                             </label>
                             <label>

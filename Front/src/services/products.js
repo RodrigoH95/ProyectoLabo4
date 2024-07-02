@@ -50,3 +50,8 @@ export const getProductsByUser = async (id) => {
     const response = await fetch(`${baseUrl}/Producto/usuario/${id}/productos`);
     return checkResponse(response);
 }
+
+export const getProductsOnDiscount = async () => {
+    const response = await fetch(`${baseUrl}/Producto/ofertas`);
+    return checkResponse(response);
+}
