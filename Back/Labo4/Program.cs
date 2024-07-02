@@ -98,6 +98,12 @@ app.UseAuthentication();
 
 app.UseAuthorization();
 
+using (var serviceScope = app.Services.GetService<IServiceScopeFactory>()!.CreateScope())
+{
+    var context = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    ApplicationDbContextSeed.SeedAsync(context, serviceScope.ServiceProvider).Wait();
+}
+
 app.MapControllers();
 
 app.Run();

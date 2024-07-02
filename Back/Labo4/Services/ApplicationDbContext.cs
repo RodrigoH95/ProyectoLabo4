@@ -8,6 +8,8 @@ namespace ProyectoLabo4.Services
 {
     public class ApplicationDbContext: DbContext
     {
+        public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -15,10 +17,11 @@ namespace ProyectoLabo4.Services
             modelBuilder.Entity<User>()
                 .HasIndex(u => u.UserName).IsUnique();
 
+
             modelBuilder.Entity<Role>().HasData(
-                new Role { Id = 1, Name = Roles.ADMIN },
-                new Role { Id = 2, Name = Roles.USER },
-                new Role { Id = 3, Name = Roles.MOD }
+                new Role { Id = 1, Name = Enums.Roles.ADMIN },
+                new Role { Id = 2, Name = Enums.Roles.USER },
+                new Role { Id = 3, Name = Enums.Roles.MOD }
             );
 
             modelBuilder.Entity<User>().HasMany(u => u.Roles).WithMany().UsingEntity<RoleUsers>(

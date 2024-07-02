@@ -8,5 +8,6 @@
         public string UrlImg { get; set; } = null!;
         public decimal Precio { get; set; }
         public decimal Descuento { get; set; }
+        public int Stock {  get; set; }
     }
 }
