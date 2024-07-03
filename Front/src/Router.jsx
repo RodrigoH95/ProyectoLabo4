@@ -1,7 +1,4 @@
-import { Login } from "@/components/auth/login";
 import { MessageCard } from "@/components/message-card";
-import { UpdateUser } from "@/components/user/update-user";
-import { UserContainer } from "@/components/user/user-container";
 import { ROLES } from "@/constants";
 import { AuthContext } from "@/context/auth";
 import { ArrowLeftEndOnRectangleIcon } from "@heroicons/react/24/outline";
@@ -35,11 +32,7 @@ export const Router = () => {
         : (<AuthContainer />)}
       </Route>
       <Route path="/product/:id" component={ProductDetails} />
-      {isAuthenticated && <Route path="/users" component={UserContainer} />}
-      {isAuthenticated && (user.roles.includes(ROLES.ADMIN) || user.roles.includes(ROLES.MOD)) && (
-        <Route path="/users/:id" component={UpdateUser} />
-      )}
-
+      
       {isAuthenticated && (user.roles.includes(ROLES.ADMIN) || user.roles.includes(ROLES.MOD)) && (
         <Route path="/admin" component={ProductContainer} />
       )}
