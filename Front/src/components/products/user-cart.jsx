@@ -35,7 +35,6 @@ export const UserCart = () => {
             toast.success("Producto removido correctamente");
         },
         onError: (error) => {
-            console.log(error);
             toast.error(error.message);
         }
     }
