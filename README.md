@@ -7,8 +7,7 @@ CompuTienda es una plataforma de comercio electrónico especializada en producto
 ## Funcionalidades Principales
 
 - Autenticación y Gestión de Usuarios
-     - Los usuarios pueden registrarse, iniciar sesión y gestionar sus cuentas.
-     - Los administradores tienen acceso a funciones adicionales para administrar usuarios y roles.
+     - Los usuarios pueden registrarse e iniciar sesión.
 
 - Gestión de Productos:
      - Los administradores pueden crear nuevos productos, modificar los existentes y eliminar aquellos que ya no estén disponibles o sean obsoletos.
