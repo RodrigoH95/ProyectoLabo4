@@ -2,6 +2,20 @@
 
 CompuTienda es una plataforma de comercio electrónico especializada en productos informáticos como monitores, sillas gamer, mouse y teclados. El sitio permite a los usuarios registrarse, agregar productos al carrito y realizar compras. Además, los administradores tienen privilegios para gestionar el inventario, creando, modificando o eliminando productos según sea necesario.
 
+## Para loguearse como admin o moderador:
+
+### Admin
+
+Usuario: Admin
+ 
+Contraseña: Admin@123
+
+### Moderador
+
+Usuario: Moderator
+
+Contraseña: Mod@123
+
 ---
 
 ## Funcionalidades Principales
