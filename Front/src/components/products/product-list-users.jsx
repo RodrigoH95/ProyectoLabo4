@@ -34,7 +34,6 @@ export const ProductListUsers = () => {
     }
 
     const handleClick = (id) => {
-        console.log("click", id);
         setLocation(`/product/${id}`);
     };
 

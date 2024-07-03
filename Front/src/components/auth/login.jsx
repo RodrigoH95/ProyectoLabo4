@@ -26,7 +26,6 @@ export const Login = () => {
     onSuccess: (data) => {
       handleLogin(data);
       toast.success("¡Bienvenido nuevamente!");
-      console.log("Previous path", previousPath);
       setLocation(previousPath ? previousPath : "/");
     },
     onError: (err) => {

@@ -52,7 +52,6 @@ export const Registro = () => {
           return;
         }
         e.target.reset();
-        console.log(credentials);
         setErrors({});
         mutate(credentials);
     };
