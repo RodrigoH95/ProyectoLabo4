@@ -19,3 +19,12 @@ export const loginSchema = z
       });
     }
   });
+
+  export const registerSchema = z
+  .object({
+    name: z.string().trim().min(1, "Ingrese un nombre válido"),
+    username: z.string().trim().min(1, "Ingrese un nombre de usuario válido"),
+    email: z.string().email("El email debe ser válido").trim(),
+    password: z.string().min(6, "La contraseña debe tener al menos 6 carácteres"),
+  })
+  .required();

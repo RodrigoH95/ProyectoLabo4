@@ -8,11 +8,12 @@ import { ArrowLeftEndOnRectangleIcon } from "@heroicons/react/24/outline";
 import { Button } from "@tremor/react";
 import { useContext } from "react";
 import { Route, Switch } from "wouter";
-import { ProductListAdmin } from "./components/products/product-list-admin";
 import { ProductContainer } from "./components/products/product-container";
 import { UpdateProduct } from "./components/products/update-product";
 import { ProductListUsers } from "./components/products/product-list-users";
 import { ProductDetails } from "./components/products/product-details";
+import { AuthContainer } from "./components/auth/auth-container";
+import { UserCart } from "./components/products/user-cart";
 
 export const Router = () => {
   const { state, handleLogout } = useContext(AuthContext);
@@ -23,17 +24,15 @@ export const Router = () => {
         <MessageCard message="Bienvenido a CompuTienda" />
         <ProductListUsers />
       </Route>
-      <Route path="/signin">
-        {/* Aca van los productos */}
+      <Route path="/signin/:redirect?">
         {isAuthenticated ? (
           <MessageCard message={`Welcome ${user.name}`}>
             <Button onClick={handleLogout} icon={ArrowLeftEndOnRectangleIcon}>
               Logout
             </Button>
           </MessageCard>
-        ) : (
-          <Login />
-        )}
+        ) 
+        : (<AuthContainer />)}
       </Route>
       <Route path="/product/:id" component={ProductDetails} />
       {isAuthenticated && <Route path="/users" component={UserContainer} />}
@@ -47,6 +46,10 @@ export const Router = () => {
 
       {isAuthenticated && (user.roles.includes(ROLES.ADMIN) || user.roles.includes(ROLES.MOD)) && (
         <Route path="/admin/product/:id" component={UpdateProduct} />
+      )}
+
+      {isAuthenticated && (
+        <Route path="/cart" component={UserCart} />
       )}
       <Route>
         <MessageCard message="404 - Not Found" />

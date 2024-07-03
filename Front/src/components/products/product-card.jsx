@@ -2,7 +2,7 @@ export const ProductCard = ({ product, handleClick }) => {
     const { id, nombre, precio, descuento, urlImg } = product;
 
     return (
-        <div onClick={() => handleClick(id)} className="relative w-56 h-80 bg-white shadow-lg rounded-lg p-4 cursor-pointer">
+        <div onClick={() => handleClick(id)} className="relative w-56 h-80 bg-white shadow-lg rounded-lg p-4 cursor-pointer transition duration-300 ease-in-out hover:scale-110">
             <img src={urlImg} alt={nombre} className="w-full h-48 object-cover object-center" />
             <div className="mt-4">
                 <h2 className="text-gray-900 title-font text-lg font-medium text-center">{nombre}</h2>

@@ -106,7 +106,7 @@ namespace ProyectoLabo4.Controllers
             try
             {
                 await _userServices.UpdateProductosById(userId, productId, cantidad);
-                return Ok();
+                return Ok(new { Message = "Producto agregado correctamente" });
             }
             catch (Exception ex)
             {
@@ -115,13 +115,13 @@ namespace ProyectoLabo4.Controllers
             }
         }
 
-        [HttpPost("{userId}/removeProduct")]
+        [HttpDelete("{userId}/removeProduct")]
         public async Task<IActionResult> RemoveProductFromUser(int userId, [FromQuery] int productId)
         {
             try
             {
                 await _userServices.RemoveProductoById(userId, productId);
-                return Ok();
+                return Ok(new { Message = "Producto removido correctamente" });
             }
             catch (Exception ex)
             {
