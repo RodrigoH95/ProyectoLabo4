@@ -12,20 +12,27 @@ import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 export const ProductDetails = () => {
     const { id } = useParams();
 
-    const [, setLocation] = useLocation();
-    console.log("id", id);
+    const [location, setLocation] = useLocation();
 
     const {
         state: { user, isAuthenticated },
     } = useContext(AuthContext);
 
+    const puedeComprar = () => {
+        if (!isAuthenticated) {
+            const currentPath = encodeURIComponent(location);
+            toast.warning("Debes iniciar sesión para agregar productos al carrito");
+            return false;
+        }
+        return true;
+    }
 
     const handleAgregarAlCarrito = async () => {
-        // if (!isAuthenticated) {
-        //     this.setNavigate("/signin");
-        // }
+        if (!puedeComprar()) {
+            setLocation(`/signin/${currentPath}`);
+        };
         try {
-            const response = await addProductToUser(user.id, id, 1);
+            const response = await addProductToUser(user.id, parseInt(id), 1);
 
             // If the response is successful, show a success toast
             if (response) {
@@ -34,8 +41,12 @@ export const ProductDetails = () => {
         } catch (error) {
             // If there's an error, show an error toast
             toast.error("Error al agregar el producto al carrito");
-            console.error(error);
         }
+    }
+
+    const handleCompra = async () => {
+        await handleAgregarAlCarrito();
+        setLocation("/cart");
     }
 
     const { data: producto, isLoading, isError } = useQuery({

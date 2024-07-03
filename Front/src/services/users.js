@@ -58,8 +58,7 @@ export const addProductToUser = async (userId, productId, cantidad) => {
   const response = await fetch(`${baseUrl}/users/${userId}/addProduct?productId=${productId}&cantidad=${cantidad}`, {
     method: "POST",
     headers: {
-      Authorization: getAuthHeader(),
-      "Content-Type": "application/json",
+      Authorization: getAuthHeader()
     },
   })  
   return checkResponse(response);
@@ -69,7 +68,7 @@ export const removeProductFromUser = async (userId, productId) => {
   const response = await fetch(`${baseUrl}/users/${userId}/removeProduct?productId=${productId}`, {
     method: "DELETE",
     headers: {
-      Authorization: getAuthHeader(),
+      Authorization: getAuthHeader()
     },
   });
   return checkResponse(response);

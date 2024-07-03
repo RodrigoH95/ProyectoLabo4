@@ -8,22 +8,30 @@ import { useMutation } from "@tanstack/react-query";
 import { Button, Card, Text, TextInput, Title } from "@tremor/react";
 import { useContext, useState } from "react";
 import { toast } from "sonner";
+import { useLocation, useParams } from "wouter";
 
 export const Login = () => {
   const [errors, setErrors] = useState({});
 
   const { handleLogin, handleError } = useContext(AuthContext);
 
+  const [_, setLocation] = useLocation();
+
+  const { redirect } = useParams();
+  const previousPath = redirect ? decodeURIComponent(redirect): null;
+
   const { mutate, isPending } = useMutation({
     mutationKey: ["login"],
     mutationFn: (credentials) => login(credentials),
     onSuccess: (data) => {
       handleLogin(data);
-      toast.success("Welcome back!");
+      toast.success("¡Bienvenido nuevamente!");
+      console.log("Previous path", previousPath);
+      setLocation(previousPath ? previousPath : "/");
     },
     onError: (err) => {
       handleError(err);
-      toast.error("Invalid credentials");
+      toast.error("Credenciales inválidas");
     },
   });
 
@@ -54,12 +62,12 @@ export const Login = () => {
         <form className="mt-5" onSubmit={handleSubmit}>
           <div className="flex flex-col gap-2 mb-6">
             <label>
-              <Text>Username or Email:</Text>
+              <Text>Usuario o e-mail:</Text>
               <TextInput
                 className="w-full px-3"
                 label="Username or Email"
                 name="usernameOrEmail"
-                placeholder="Type username or email here"
+                placeholder="Ingrese su usuario o e-mail"
                 autoComplete="off"
                 error={Boolean(errors.username ?? errors.email)}
                 errorMessage={errors.username ?? errors.email}
@@ -71,7 +79,7 @@ export const Login = () => {
                 className="w-full px-3"
                 label="Password"
                 name="password"
-                placeholder="Type password here"
+                placeholder="Ingrese su contraseña"
                 type="password"
                 autoComplete="off"
                 error={Boolean(errors.password)}
