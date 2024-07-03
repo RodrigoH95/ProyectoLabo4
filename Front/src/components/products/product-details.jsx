@@ -18,19 +18,13 @@ export const ProductDetails = () => {
         state: { user, isAuthenticated },
     } = useContext(AuthContext);
 
-    const puedeComprar = () => {
+    const handleAgregarAlCarrito = async () => {
         if (!isAuthenticated) {
             const currentPath = encodeURIComponent(location);
             toast.warning("Debes iniciar sesión para agregar productos al carrito");
-            return false;
-        }
-        return true;
-    }
-
-    const handleAgregarAlCarrito = async () => {
-        if (!puedeComprar()) {
             setLocation(`/signin/${currentPath}`);
-        };
+            return;
+        }
         try {
             const response = await addProductToUser(user.id, parseInt(id), 1);
 
@@ -41,6 +35,7 @@ export const ProductDetails = () => {
         } catch (error) {
             // If there's an error, show an error toast
             toast.error("Error al agregar el producto al carrito");
+            console.error(error);
         }
     }
 
