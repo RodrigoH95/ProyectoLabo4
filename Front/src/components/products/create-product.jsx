@@ -1,5 +1,3 @@
-import { createUserSchema } from "@/schemas/validation/user";
-import { createUser } from "@/services/users";
 import { mappedErrors } from "@/utils/mapped-errors";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Button, Card, TextInput, Text, Title } from "@tremor/react";

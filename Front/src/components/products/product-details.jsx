@@ -41,6 +41,7 @@ export const ProductDetails = () => {
 
     const handleCompra = async () => {
         await handleAgregarAlCarrito();
+        if (!isAuthenticated) return;
         setLocation("/cart");
     }
 
