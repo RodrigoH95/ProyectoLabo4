@@ -1,27 +1,23 @@
 import { Loader } from "@/components/loader";
 import { AuthContext } from "@/context/auth";
-import { loginSchema } from "@/schemas/validation/auth";
-import { login } from "@/services/auth";
-import { checkIfIsEmailOrUsername, mappedErrors } from "@/utils/mapped-errors";
+import { mappedErrors } from "@/utils/mapped-errors";
 import { ArrowRightEndOnRectangleIcon } from "@heroicons/react/24/outline";
 import { useMutation } from "@tanstack/react-query";
 import { Button, Card, Text, TextInput, Title } from "@tremor/react";
 import { useContext, useState } from "react";
 import { toast } from "sonner";
-import { useLocation, useParams } from "wouter";
 import { register } from "../../services/auth";
 import { registerSchema } from "../../schemas/validation/auth";
 
 export const Registro = () => {
     const [errors, setErrors] = useState({});
 
-    const { handleLogin, handleError } = useContext(AuthContext);
+    const { handleError } = useContext(AuthContext);
 
     const { mutate, isPending } = useMutation({
         mutationKey: ["register"],
         mutationFn: (credentials) => register(credentials),
         onSuccess: (data) => {
-            //   handleLogin(data);
             toast.success("¡Te has registrado con exito!");
         },
         onError: (err) => {
@@ -34,18 +30,13 @@ export const Registro = () => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData);
-        const { name, userName, email, password } = data;
+        const { name, username, email, password } = data;
         const credentials = {
             name,
-            userName,
+            username,
             email,
             password,
         };
-        // const field = checkIfIsEmailOrUsername(usernameOrEmail);
-        // const credentials = {
-        //   [field]: usernameOrEmail,
-        //   password,
-        // };
         const { success, errors } = mappedErrors(registerSchema, credentials);
         if (!success) {
           setErrors(errors);
@@ -79,7 +70,7 @@ export const Registro = () => {
                             <TextInput
                                 className="w-full px-3"
                                 label="Username"
-                                name="userName"
+                                name="username"
                                 placeholder="Ingrese su usuario"
                                 autoComplete="off"
                                 error={Boolean(errors.username)}
